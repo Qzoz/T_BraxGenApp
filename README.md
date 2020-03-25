@@ -19,6 +19,6 @@ How to use it:
 
 
 Info about [Directories]:
-  ui: Contains All the graphical content
-  db: Contains All the database actions
+  1. ui: Contains All the graphical content
+  2. db: Contains All the database actions
   
