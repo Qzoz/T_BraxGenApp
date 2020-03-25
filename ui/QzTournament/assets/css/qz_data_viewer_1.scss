@@ -1,0 +1,435 @@
+$colors:(
+    b0:#000000,
+    b1:#353535,
+    b2:#4b4b4b,
+    b3:#666666,
+    w3:#9e9e9e,
+    w2:#c2c2c2,
+    w1:#e4e4e4,
+    w0:#ffffff,
+);
+
+
+@function gC($k){
+    @return map-get($colors, $k);
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body{
+    min-height: 100%;
+    background: gC(w3);
+}
+
+html::-webkit-scrollbar{
+    width: 7px;
+    background: gC(b2);
+    box-shadow: inset 0px 0px 1px gC(w3);
+}
+
+html::-webkit-scrollbar-thumb{
+    background: gC(w1);
+}
+
+// Data View Start
+
+.qz_edit_link{
+    color:rgb(216, 149, 24);
+}
+
+.qz_delete_link{
+    color:rgb(255, 0, 0);
+}
+
+
+// Data View Container
+
+.qz_data_view_container{
+    background: gC(w1);
+    color: gC(b0);
+    margin: 0.5rem 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 2px gC(b0), 0px 2px 3px gC(w1), 0px 2px 4px gC(w2), 0px 2px 5px gC(w3);
+    position: relative;
+    overflow: hidden;
+}
+
+// Data View Head
+
+.qz_data_view_head{
+    background: gC(b0);
+    color: gC(w0);
+    margin-bottom: 0.25rem;
+    padding: 1rem;
+    border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
+}
+
+.qz_btn_caps{
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    margin: 0.25rem 0.5rem;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.qz_btn_caps_white{
+    border: 2px solid gC(w0);
+    background: gC(b0);
+    color: gC(w0);
+}
+
+.qz_btn_caps_white:hover .qz_searchBox{
+    background: gC(w0);
+    color: gC(b0);
+}
+
+.qz_btn_caps_white:hover{
+    background: gC(w0);
+    color: gC(b0);
+}
+
+.qz_btn_caps_grey{
+    border: 2px solid gC(w2);
+    background: gC(b0);
+    color: gC(w2);
+}
+
+.qz_btn_caps_grey:hover .qz_searchBox{
+    background: gC(w2);
+    color: gC(b0);
+}
+
+.qz_btn_caps_grey:hover{
+    background: gC(w2);
+    color: gC(b0);
+}
+
+.qz_caps_row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qz_searchRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qz_searchBox {
+    line-height: 1.4rem;
+    font-size: 1rem;
+    border: 0;
+    text-indent: 5px;
+    border-radius: 2px;
+    font-family: MontserratAltSemiBold;
+    background: gC(b0);
+    transition: 0.4s;
+    color: gC(w0);
+}
+
+
+// Data View Head
+
+.qz_data_view_body{
+    background: gC(b0);
+    color: gC(w0);
+    margin-bottom: 0.25rem;
+    padding: 0.5rem 0;
+    overflow: scroll;
+    animation-name: slowSizing;
+    animation-duration: 1s;
+}
+
+.qz_data_view_body::-webkit-scrollbar{
+    background: gC(b0);
+    box-shadow: inset 0px 0px 1px gC(w0);
+}
+.qz_data_view_body::-webkit-scrollbar-thumb{
+    background: gC(w0);
+}
+
+.qz_data_view_table{
+    padding: 0.5rem;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 1;
+    cursor: pointer;
+    user-select: none;
+}
+
+// Style table layout
+
+.qz_data_view_tb_1{
+    border: 2px solid gC(b2);
+    background: gC(w1);
+}
+
+.qz_data_view_tb_1 thead tr{
+    margin: 0 0 0 2px;
+    border-bottom: 2px solid gC(w0);
+}
+
+.qz_data_view_tb_1 thead th{
+    padding: 1rem 0;
+    border-left: 1px solid gC(w0);
+    background: gC(b0);
+    color: gC(w2);
+}
+
+.qz_data_view_tb_1 tbody tr{
+    border-bottom: 1px solid gC(w0);
+    background: gC(b2);
+    color: gC(w0);
+    transition: 0.4s ease;
+}
+
+.qz_data_view_tb_1 tbody tr:hover{
+    background: gC(w0);
+    color: gC(b1);
+}
+
+.qz_data_view_tb_1 tbody td{
+    padding: 0.25rem 0.5rem;
+    border-left: 1px solid gC(w0);
+}
+
+// Data View Head
+
+.qz_data_view_foot{
+    border: 2px solid gC(b0);
+    background: gC(b1);
+    color: gC(w0);
+    padding: 0.25rem 1rem;
+    border-radius: 0 0 1rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.qz_data_view_foot:hover{
+    border: 2px solid gC(b0);
+    background: gC(w0);
+    color: gC(b0);
+}
+
+.qz_data_view_foot .qz_data_body_togg{
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qz_data_view_foot .qz_data_body_togg p{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    transition: 1s ease;
+}
+
+
+// End Of Data View
+
+// Form CSS
+
+
+.qz_form_head{
+    background: gC(b0) !important;
+    color: gC(w0);
+    border: 1px solid gC(w1);
+    padding: 0.5rem 1rem;
+}
+.qz_form_body{
+    background: gC(w1);
+    color: gC(b0);
+}
+.qz_form_foot{
+    background: gC(b0) !important;
+    color: gC(w0);
+    border: 1px solid gC(w1);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.qz_form{
+    padding: 0.5rem 1rem;
+    background: gC(w1);
+}
+
+.qz_form_group{
+    margin: 0.25rem 0 0.5rem 0;
+    border-bottom: 2px solid gC(b0);
+    padding: 0 0 0.5rem 0;
+}
+
+.qz_form_grp1{
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.qz_form_grp2{
+    padding: 0.125rem 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.qz_form_input{
+    width: 100%;
+    border: 0;
+    line-height: 2rem;
+    text-indent: 0.5rem;
+    font-size: 1rem;
+    font-family: MontserratAltSemiBold;
+    border-radius: 5px;
+    border: 0.5px solid gC(b1);
+}
+
+.qz_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.5s ease;
+}
+
+.qz_btn_submit{
+    border: 2px solid #adff2f;
+    color: #adff2f;
+}
+
+.qz_btn_submit:hover{
+    background: #adff2f;
+    color: gC(b0);
+}
+
+.qz_btn_cancel:hover{
+    background:gC(w0);
+    color: gC(b0);
+}
+
+// Below is Match Info
+
+
+.qz_match_sec_info {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qz_match_tv_pair {
+    width: 35%;
+    // border-bottom: 2px solid gC(b0);
+    margin: 0.5rem 1rem;
+}
+
+.qz_match_status{
+    padding: 0.5rem;
+    color: gC(w2);
+    font-size: 12px;
+}
+
+#qz_match_status{
+    color: gC(w0);
+    font-size: 16px;
+}
+
+.qz_match_tag {
+    padding: 0.25rem 1rem;
+}
+
+.qz_match_val {
+    padding: 0.25rem 0.5rem 0.25rem 3rem;
+}
+
+
+.qz_players_sec_info{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 2px solid gC(b0);
+}
+
+.qz_match_info_player_1{
+    width: 45%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.qz_match_info_player_2{
+    width: 45%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.qz_match_pl_pair {
+    border-bottom: 1px solid gC(b0);
+}
+
+.qz_winner {
+    background: rgba(138, 255, 123, 0.5);
+    color: gC(b0);
+}
+
+.qz_loser {
+    background: rgba(255, 158, 129, 0.5);
+    color: gC(b0);
+}
+
+.qz_winner_dk {
+    background: linear-gradient(
+        to right,
+        rgba(gC(b2), 0.6),
+        rgba(gC(b2), 0.6),
+        rgba(23, 150, 7, 0.6)
+    );
+    color: gC(w0);
+}
+
+.qz_loser_dk {
+    background: linear-gradient(
+        to right,
+        rgba(gC(b2), 0.6),
+        rgba(gC(b2), 0.6),
+        rgba(190, 1, 1, 0.6)
+    );
+    color: gC(w0);
+}
+
+.qz_info_link{
+    color: #1b69fa;
+}
+
+// Animations
+
+
+@keyframes slowSizing {
+    from{
+        opacity: 0.5;
+    }
+    to{
+        opacity: 1;
+    }
+}

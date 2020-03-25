@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Qz Tournament Brackets</title>
+    <link rel="stylesheet" id="qz_page_style" href="assets/css/qz_data_viewer_1.css">
+    <link rel="stylesheet" href="../QzBrax/assets/css/modal/qz_modal.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+</head>
+
+<body class="font-montserratSemiBold">
+
+    <div class="qz_data_view_container">
+        <div class="qz_data_view_head">
+            <div class="qz_btn_caps qz_btn_caps_white" data-toggle="modal" data-target="qz_tournamentFormModal">
+                <div>
+                    <h3 class="qz_caps_row"><span style="font-size: 1.5rem;">&plus;</span> <span>&nbsp; Create
+                            New Tournament</span></h3>
+                </div>
+            </div>
+            <hr style="margin: 0.5rem 0; background: white;">
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By ID :&nbsp;</span>
+                        <input type="text" placeholder="Tournament ID..." id="tournamentID"
+                            onkeyup="tournamentFilterChanged(id, '0')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Name :&nbsp;</span>
+                        <input type="text" placeholder="Tournament Name..." id="tournamentName"
+                            onkeyup="tournamentFilterChanged(id, '1')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Date :&nbsp;</span>
+                        <input type="text" id="tournamentDate" onkeyup="tournamentFilterChanged(id, '2')"
+                            class="qz_searchBox" placeholder="Date : DD-MM-YYYY">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Player Count :&nbsp;</span>
+                        <input type="number" placeholder="Player Count No..." id="tournamentPlCount"
+                            onkeyup="tournamentFilterChanged(id, '3')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Description :&nbsp;</span>
+                        <input type="text" placeholder="(Only Few Chars)..." id="tournamentDesc"
+                            onkeyup="tournamentFilterChanged(id, '4')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <hr style="margin: 0.5rem 0; background: white;">
+            <div class="qz_btn_caps qz_btn_caps_grey">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Tournament Selected :&nbsp;</span>
+                        <input type="text" id="tournamentIDSelected" value="" placeholder="Selected TID - TNAME"
+                            disabled class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white" onclick="startTournament()">
+                <div>
+                    <h3 class="qz_caps_row"><span>START</span></h3>
+                </div>
+            </div>
+            <hr style="margin: 0.5rem 0; background: white;">
+            <div class="qz_btn_caps qz_btn_caps_white" onclick="exportSelectedTournamentAsHTML()">
+                <div>
+                    <h3 class="qz_caps_row"><span>Export Details As HTML</span></h3>
+                </div>
+            </div>
+            <hr style="margin: 0.5rem 0; background: white;">
+            <div class="qz_btn_caps qz_btn_caps_white" onclick="showAllTP()">
+                <div>
+                    <h3 class="qz_caps_row"><span>Show All &plus; Reset</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="qz_data_view_body" style="max-height:50vh; display:block;" id="qz_tournamentDataViewBody">
+            <table class="qz_data_view_table qz_data_view_tb_1" style="table-layout: fixed;
+                        width:100%; min-width: 1200px;">
+                <thead>
+                    <tr class="font-montserratBold">
+                        <th>SEL</th>
+                        <th>SNO</th>
+                        <th>T-ID</th>
+                        <th>NAME</th>
+                        <th>DATE</th>
+                        <th>PLAYERs</th>
+                        <th>DESC</th>
+                        <th>FILE</th>
+                        <th>EDIT</th>
+                    </tr>
+                </thead>
+                <colgroup>
+                    <col width="4%">
+                    <col width="5%">
+                    <col width="6%">
+                    <col width="17%">
+                    <col width="11%">
+                    <col width="10%">
+                    <col width="22%">
+                    <col width="20%">
+                    <col width="6%">
+                </colgroup>
+                <tbody id="qz_tournamentTableValues">
+                </tbody>
+            </table>
+        </div>
+        <div class="qz_data_view_foot" onclick="toggleCollapsable(this)" data-target="qz_tournamentDataViewBody">
+            <h2 class="qz_data_body_togg">
+                <p>&RightAngleBracket;</p>
+            </h2>
+        </div>
+    </div>
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_tournamentFormModal">
+        <div class="qz_modal_parent" style="width:50%;">
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_form_head">
+                    <h1>Tournament <span id="qz_tournament_form">Add</span> Form</h1>
+                </div>
+                <div class="qz_modal_body qz_form_body">
+                    <div class="qz_form">
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Tournament ID</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text" disabled
+                                    id="qz_form_tournament_id" placeholder="ID Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Tournament Name</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text"
+                                    id="qz_form_tournament_name" placeholder="Name Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Date</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="date"
+                                    id="qz_form_tournament_date" placeholder="Date Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Description</label></div>
+                            <div class="qz_form_grp2"><textarea class="qz_form_input" id="qz_form_tournament_desc"
+                                    placeholder="Tournament Description"></textarea></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Background Image</label></div>
+                            <div class="qz_form_grp2"><button class="qz_form_input" type="button"
+                                    onclick="imageFileSelected()">Click To Select File</button>
+                            </div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Background Image</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" disabled type="text"
+                                    id="qz_form_tournament_file" placeholder="Selected Image File Here..."></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_form_foot">
+                    <div class="qz_btn qz_btn_submit" onclick="createTournament();">
+                        <p>Submit</p>
+                    </div>
+                    <div class="qz_btn qz_btn_cancel" onclick="clearTournamentFormField();">
+                        <p>Cancel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="qz_data_view_container">
+        <div class="qz_data_view_head">
+            <div class="qz_btn_caps qz_btn_caps_white" onclick="updatePlayer()">
+                <div>
+                    <h3 class="qz_caps_row"><span style="font-size: 1.5rem;">&plus;</span> <span>&nbsp; Add
+                            Player</span></h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white" onclick="openAddBulkPlayer()">
+                <div>
+                    <h3 class="qz_caps_row"><span style="font-size: 1.5rem;">&plus;</span> <span>&nbsp; Add
+                            Players (Bulk)</span></h3>
+                </div>
+            </div>
+            <hr style="margin: 0.5rem 0; background: white;">
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By ID :&nbsp;</span>
+                        <input type="text" placeholder="Player ID..." id="playerID"
+                            onkeyup="playerFilterChanged(id, '0')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By First Name :&nbsp;</span>
+                        <input type="text" placeholder="Player First Name..." id="playerFn"
+                            onkeyup="playerFilterChanged(id, '1')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Last Name :&nbsp;</span>
+                        <input type="text" placeholder="Player Last Name..." id="playerLn"
+                            onkeyup="playerFilterChanged(id, '2')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Phone No. :&nbsp;</span>
+                        <input type="number" placeholder="Player Phone No..." id="playerPhno"
+                            onkeyup="playerFilterChanged(id, '3')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Origin :&nbsp;</span>
+                        <input type="text" placeholder="Player Origin..." id="playerOrigin"
+                            onkeyup="playerFilterChanged(id, '4')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Postion [ Match ID ] :&nbsp;</span>
+                        <input type="text" placeholder="Player Match ID..." id="playerPos"
+                            onkeyup="playerFilterChanged(id, '5')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="qz_data_view_body" style="height:50vh; display:block;" id="qz_playerDataViewBody">
+            <table class="qz_data_view_table qz_data_view_tb_1" style="table-layout: fixed;
+                width:100%; min-width: 1200px;">
+                <thead>
+                    <tr class="font-montserratBold">
+                        <th>SNO</th>
+                        <th>U-ID</th>
+                        <th>NAME</th>
+                        <th>SURNAME</th>
+                        <th>PHNO</th>
+                        <th>ORIGIN</th>
+                        <th>POSITION</th>
+                        <th>RANK</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
+                    </tr>
+                </thead>
+                <colgroup>
+                    <col width="4%">
+                    <col width="11%">
+                    <col width="15%">
+                    <col width="12%">
+                    <col width="11%">
+                    <col width="16%">
+                    <col width="10%">
+                    <col width="8%">
+                    <col width="6%">
+                    <col width="6%">
+                </colgroup>
+                <tbody id="qz_playerTableValues">
+                </tbody>
+            </table>
+        </div>
+        <div class="qz_data_view_foot" onclick="toggleCollapsable(this)" data-target="qz_playerDataViewBody">
+            <h2 class="qz_data_body_togg">
+                <p>&RightAngleBracket;</p>
+            </h2>
+        </div>
+    </div>
+
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_playerFormModal">
+        <div class="qz_modal_parent" style="width:50%;">
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_form_head">
+                    <h1>Player <span id="qz_player_form">Add</span> Form</h1>
+                </div>
+                <div class="qz_modal_body qz_form_body">
+                    <div class="qz_form">
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>ID</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text" id="qz_form_player_id"
+                                    placeholder="ID Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>First Name</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text" id="qz_form_player_fname"
+                                    placeholder="First Name Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Last Name</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text" id="qz_form_player_lname"
+                                    placeholder="Last Name Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Origin</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text"
+                                    id="qz_form_player_origin" placeholder="Origin Here..."></div>
+                        </div>
+                        <div class="qz_form_group">
+                            <div class="qz_form_grp1"><label>Phone No</label></div>
+                            <div class="qz_form_grp2"><input class="qz_form_input" type="text"
+                                    id="qz_form_player_phoneno" placeholder="Phone No Here..."></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_form_foot">
+                    <div class="qz_btn qz_btn_submit" onclick="addPlayer();">
+                        <p>Submit</p>
+                    </div>
+                    <div class="qz_btn qz_btn_cancel" onclick="clearPlayerFormField();">
+                        <p>Cancel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_playerBulkFormModal">
+        <div class="qz_modal_parent" style="width:60%;">
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_form_head">
+                    <h1>Player <span id="qz_player_form">Add Bulk</span> Form</h1>
+                </div>
+                <div class="qz_modal_body qz_form_body">
+                    <div class="qz_form">
+                        <div class="qz_form_group">
+                            <span>Values => </span>
+                            <span><input type="checkbox" name="inp_val" value="uid"
+                                    onchange="changeBulkPlayerEntries(this)"> UID
+                            </span>
+                            <span><input type="checkbox" name="inp_val" value="ufn"
+                                    onchange="changeBulkPlayerEntries(this)"> First Name
+                            </span>
+                            <span><input type="checkbox" name="inp_val" value="uln"
+                                    onchange="changeBulkPlayerEntries(this)"> Last Name
+                            </span>
+                            <span><input type="checkbox" name="inp_val" value="uph"
+                                    onchange="changeBulkPlayerEntries(this)"> Phone No
+                            </span>
+                            <span><input type="checkbox" name="inp_val" value="uor"
+                                    onchange="changeBulkPlayerEntries(this)"> Origin
+                            </span>
+                        </div>
+                        <div class="qz_form_group">
+                            <span>Seperators => </span>
+                            <span><input type="radio" name="sep_type" value=","
+                                    onchange="changeBulkPlayerEntries(this)"> ',' </span>
+                            <span><input type="radio" name="sep_type" value="-" checked
+                                    onchange="changeBulkPlayerEntries(this)"> '-'
+                            </span>
+                        </div>
+                        <p>Enter Players Details (Seperated either by Seperator Selected)</p>
+
+                        <div class="qz_form_group">
+                            <textarea id="playerBulkDets" cols="80" rows="30"
+                                placeholder="Seperated Player Details"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_form_foot">
+                    <div class="qz_btn qz_btn_submit" onclick="addBulkPlayersDetails();">
+                        <p>Submit</p>
+                    </div>
+                    <div class="qz_btn qz_btn_cancel" onclick="closeAddBulkPlayer();">
+                        <p>Cancel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="qz_data_view_container">
+        <div class="qz_data_view_head">
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Number :&nbsp;</span>
+                        <input type="number" placeholder="Match No..." id="matchNo"
+                            onkeyup="matchFilterChanged(id, '0')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Player (Any) :&nbsp;</span>
+                        <input type="text" placeholder="Player Name..." id="matchpNm"
+                            onkeyup="matchFilterChanged(id, '1')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Winner :&nbsp;</span>
+                        <input type="text" placeholder="Winner Name..." id="matchWinner"
+                            onkeyup="matchFilterChanged(id, '2')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By status :&nbsp;</span>
+                        <input type="text" placeholder="Status (d or r)..." id="matchStatus"
+                            onkeyup="matchFilterChanged(id, '3')" class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <div class="qz_btn_caps qz_btn_caps_white">
+                <div>
+                    <h3 class="qz_searchRow">
+                        <span>Find By Match ID :&nbsp;</span>
+                        <input type="text" placeholder="Match ID..." id="matchID" onkeyup="matchFilterChanged(id, '4')"
+                            class="qz_searchBox">
+                    </h3>
+                </div>
+            </div>
+            <hr style="margin: 0.5rem 0; background: white;">
+            <div class="qz_btn_caps qz_btn_caps_white" onclick="resetMatchListOfSelectedT();">
+                <div>
+                    <h3 class="qz_caps_row">Reset Matches</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="qz_data_view_body" style="height:50vh; display:block;" id="qz_matchDataViewBody">
+            <table class="qz_data_view_table qz_data_view_tb_1" style="table-layout: fixed;
+                    width:100%; min-width: 1200px;">
+                <thead>
+                    <tr class="font-montserratBold">
+                        <th>SNO</th>
+                        <th>PLAYER 1</th>
+                        <th>PLAYER 2</th>
+                        <th>STATUS</th>
+                        <th>MATCH-ID</th>
+                    </tr>
+                </thead>
+                <colgroup>
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="30%">
+                    <col width="15%">
+                    <col width="15%">
+                </colgroup>
+                <tbody id="qz_matchTableValues">
+                </tbody>
+            </table>
+        </div>
+        <div class="qz_data_view_foot" onclick="toggleCollapsable(this)" data-target="qz_matchDataViewBody">
+            <h2 class="qz_data_body_togg">
+                <p>&RightAngleBracket;</p>
+            </h2>
+        </div>
+    </div>
+
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_matchFormModal">
+        <div class="qz_modal_parent">
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_form_head">
+                    <h1>Match Info</h1>
+                    <h3 class="qz_match_status">Status : <span id="qz_match_status"></span></h3>
+                </div>
+                <div class="qz_modal_body qz_form_body">
+                    <div class="qz_match_sec_info">
+                        <div class="qz_match_tv_pair">
+                            <h5 class="qz_match_tag">Match No</h5>
+                            <h4 class="qz_match_val" id="qz_match_no"></h4>
+                        </div>
+                        <div class="qz_match_tv_pair">
+                            <h5 class="qz_match_tag">Match ID</h5>
+                            <h4 class="qz_match_val" id="qz_match_id"></h4>
+                        </div>
+                    </div>
+                    <div class="qz_players_sec_info">
+                        <div class="qz_match_info_player_1 qz_loser" id="qz_match_info_p_1">
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">U-ID</h5>
+                                <h3 class="qz_match_val" id="qz_match_id_p_1"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">First Name</h5>
+                                <h3 class="qz_match_val" id="qz_match_fn_p_1"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">Last Name</h5>
+                                <h3 class="qz_match_val" id="qz_match_ln_p_1"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">Origin</h5>
+                                <h3 class="qz_match_val" id="qz_match_or_p_1"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">Phone No</h5>
+                                <h3 class="qz_match_val" id="qz_match_ph_p_1"></h3>
+                            </div>
+                        </div>
+                        <div class="qz_match_info_player_2 qz_winner" id="qz_match_info_p_2">
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">U-ID</h5>
+                                <h3 class="qz_match_val" id="qz_match_id_p_2"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">First Name</h5>
+                                <h3 class="qz_match_val" id="qz_match_fn_p_2"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">Last Name</h5>
+                                <h3 class="qz_match_val" id="qz_match_ln_p_2"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">Origin</h5>
+                                <h3 class="qz_match_val" id="qz_match_or_p_2"></h3>
+                            </div>
+                            <div class="qz_match_pl_pair">
+                                <h5 class="qz_match_tag">Phone No</h5>
+                                <h3 class="qz_match_val" id="qz_match_ph_p_2"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_form_foot">
+                    <div class="qz_btn qz_btn_cancel" data-target="qz_matchFormModal" data-toggle="modal">
+                        <p>Close</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../QzBrax/assets/js/modal/qz_modal.js"></script>
+    <script src="../QzBrax/assets/js/brax/brax_calculation.js"></script>
+    <script src="assets/exp/qz_exporter.js"></script>
+    <script src="assets/js/qz_data_ipc_handler.js"></script>
+    <script src="assets/js/qz_data_handler.js"></script>
+    <script src="assets/js/qz_data_viewer.js"></script>
+    <script src="assets/js/qz_data_view_tournament.js"></script>
+    <script src="assets/js/qz_data_view_player.js"></script>
+    <script src="assets/js/qz_data_view_match.js"></script>
+</body>
+
+</html>

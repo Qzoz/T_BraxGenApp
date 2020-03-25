@@ -1,0 +1,552 @@
+
+$colors : (
+    primary: #ffffff,
+    secondary: #000000,
+    alter:#444444,
+    transblack: #858585a1,
+    c0:#000000,
+    c1:#A21212,
+    c2:#DA3330,
+    c3:#FF4E41,
+    c4:#F9C73F,
+    c5:#FFE046,
+    c6:#ffffff,
+);
+
+
+@function getColor($col) {
+    @return map-get($colors, $col)
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html::-webkit-scrollbar{
+    width: 7px;
+    background: getColor(transblack);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0.5px getColor(c2);
+}
+
+html::-webkit-scrollbar-thumb{
+    background-color: getColor(c2);
+    border-radius: 1px;
+    box-shadow: inset 0 0 0.5px getColor(primary);
+}
+
+.h100{
+    height: 100%;
+}
+
+.h50{
+    height: 50%;
+}
+
+.w100{
+    width: 100%;
+}
+
+.w50{
+    width: 50%;
+}
+
+.posAbs{
+    position: absolute;
+}
+
+.posRel{
+    position: relative;
+}
+
+.posFix{
+    position: fixed;
+}
+
+.disBlock{
+    display: block;
+}
+
+.disInline{
+    display: inline;
+}
+
+.disInFlex{
+    display: inline-flex;
+}
+
+.disInBlock{
+    display: inline-block;
+}
+
+.disFlex{
+    display: flex;
+}
+
+.alignCenter{
+    align-items: center;
+}
+
+.justifyCenter{
+    justify-content: center;
+}
+
+.jStart{
+    justify-content: flex-start;
+}
+
+.jEnd{
+    justify-content: flex-end;
+}
+
+.centerTop{
+    left: 50%;
+    top: 0.5rem;
+    transform: translateX(-50%);
+}
+
+.centerBottom{
+    left: 50%;
+    bottom: 0.5rem;
+    transform: translateX(-50%);
+}
+
+// Above are general CSS
+
+
+#brax_back{
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.qz_brax_container{
+    background: getColor(transblack);
+    padding: 0.5rem 1rem;
+}
+
+
+.qz_brax_round{
+    height: 100%;
+}
+
+.qz_brax_block{
+    min-height: 80px;
+}
+
+.qz_brax_block_l {
+    width: 100%;
+    border-left: 2px solid getColor(secondary);
+}
+
+.qz_brax_block_r {
+    width: 100%;
+    border-right: 2px solid getColor(secondary);
+}
+
+.qz_brax_block_l:hover{
+    border-color: getColor(c2);
+}
+
+.qz_brax_block_r:hover{
+    border-color: getColor(c2);
+}
+
+.qz_brax_match{
+    height: 60px;
+    width: 90%;
+    border: 1px solid getColor(primary);
+    border-radius: 3px;
+    background: getColor(secondary);
+    color: getColor(primary);
+    cursor: grab;
+    user-select: none;
+}
+
+
+.qz_brax_match > p {
+    border: 0.5px solid getColor(secondary);
+    padding: 3px;
+    border-radius: 50%;
+    font-size: 11px;
+    height: 24px;
+    width: 24px;
+    background: getColor(primary);
+    color: getColor(secondary);
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qz_brax_match > p:hover{
+    background: getColor(secondary);
+    color: getColor(primary);
+}
+
+.qz_brax_match_left > p {
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.qz_brax_match_right > p{
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
+
+.qz_brax_match_tile{
+    height: 100%;
+}
+
+.qz_brax_pl{
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.qz_brax_pl:hover{
+    background: getColor(alter);
+}
+
+.qz_brax_info{
+    width: 24px;
+    height: 100%;
+    padding: 0 7px;
+    display: flex;
+    align-items: center;
+    background: getColor(alter);
+    color: getColor(primary);
+    font-weight: bold;
+}
+
+.pl_1{
+    border-bottom: 0.5px solid getColor(primary);
+}
+
+.pl_2{
+    border-top: 0.5px solid getColor(primary);
+}
+
+.qz_brax_pl_l{
+    flex-direction: row;
+}
+
+.qz_brax_pl_l p:first-child{
+    justify-content: flex-end;
+    border-right: 1px solid getColor(primary);
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.qz_brax_pl_r{
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.qz_brax_pl_r p:first-child{
+    justify-content: flex-start;
+    border-left: 1px solid getColor(primary);
+    border-radius: 2px;
+}
+
+.qz_brax_name{
+    padding-left: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+
+// End Of Brax CSS
+
+
+.qz_fl_btn{
+    position: fixed;
+    height: 3rem;
+    width: 3rem;
+    font-size: 3rem;
+    border: 2px solid getColor(primary);
+    border-radius: 50%;
+    background: getColor(secondary);
+    color: getColor(primary);
+    cursor: pointer;
+    user-select: none;
+}
+
+.qz_fl_btn:hover{
+    background: getColor(primary);
+    color: getColor(secondary);
+    box-shadow: 0px 0px 3px getColor(transblack), 0px 0px 6px lightgray, 0px 0px 12px white;
+}
+
+.qz_fl_btn:hover > p{
+    animation-name: rotateRight;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.qz_float_cont{
+    display: none;
+    position: fixed;
+    overflow: hidden;
+    height: 200vh;
+    width: 100vw;
+    background: radial-gradient(
+        rgba(getColor(c0), 1),
+        rgba(getColor(c0), 0.95),
+        rgba(getColor(c0), 0.9),
+        rgba(getColor(c0), 0.5),
+        rgba(getColor(c0), 0.4),
+        rgba(getColor(c0), 0.1),
+        rgba(getColor(c0), 0),
+        rgba(getColor(c0), 0),
+        rgba(getColor(c0), 0),
+    );
+    transform: translate(-50%, 50%);
+    animation-name: slowShow;
+    animation-duration: 1s;
+}
+
+.qz_float_content{
+    padding: 2rem;
+    justify-content: space-around;
+}
+
+.qz_float_c1{
+    padding: 1rem;
+}
+
+.qz_float_c2{
+    padding: 1rem;
+}
+
+.qz_final_match{
+    border-top-left-radius: 100%;
+    border-bottom-right-radius: 5rem;
+    background: getColor(c2);
+    color: getColor(primary);
+    cursor: pointer;
+    user-select: none;
+}
+
+.qz_final_match > p {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    font-size: 30px;
+}
+
+.qz_third_match {
+    border-top-right-radius: 100%;
+    border-bottom-left-radius: 5rem;
+    background: getColor(c4);
+    cursor: pointer;
+    user-select: none;
+}
+
+.qz_third_match > p {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    font-size: 30px;
+}
+
+// Match Final
+
+.qz_final_tile_block{
+    height: 60%;
+    width: 70%;
+    position: absolute;
+    bottom: 6rem;
+    right: 3rem;
+}
+
+.qz_final_vs{
+    height: 20%;
+}
+
+.qz_final_pl_holder{
+    height: 40%;
+}
+
+.qz_final_pl{
+    height: 5rem;
+    width: 85%;
+    border-top-left-radius: 5rem;
+    border-bottom-right-radius: 2.5rem;
+    border: 2px solid getColor(primary);
+    overflow: hidden;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px getColor(transblack);
+    position: relative;
+    transition: 0.8s;
+}
+
+.qz_final_pl::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 0%;
+    height: 100%;
+    background: getColor(primary);
+    z-index: 0;
+    transition: 0.8s;
+    border-top-left-radius: 5rem;
+}
+
+.qz_final_pl:hover{
+    color: getColor(secondary);
+    text-shadow: 0px 0px 1px getColor(primary), 0px 0px 3px getColor(secondary);
+}
+.qz_final_pl:hover::before{
+    width: 100%;
+}
+
+.qz_final_pl h3{
+    width: 80%;
+    padding-left: 3rem;
+    z-index: 1;
+}
+
+.qz_final_pl h1{
+    width: 20%;
+    height: 100%;
+    font-size: 2rem;
+    border-top-left-radius: 2.5rem;
+    background: getColor(primary);
+    color: getColor(secondary);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.qz_final_pl h1:hover{    
+    background: getColor(secondary);
+    color: getColor(primary);
+}
+
+.qz_final_match:hover {
+    .qz_final_vs{
+        animation-name: beatUp;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+}
+
+
+// Match Final
+
+.qz_third_tile_block{
+    height: 60%;
+    width: 70%;
+    position: absolute;
+    bottom: 6rem;
+    left: 3rem;
+}
+
+.qz_third_vs{
+    height: 20%;
+}
+
+.qz_third_pl_holder{
+    height: 40%;
+}
+
+.qz_third_pl{
+    height: 5rem;
+    width: 85%;
+    border-top-right-radius: 5rem;
+    border-bottom-left-radius: 2.5rem;
+    border: 2px solid getColor(secondary);
+    overflow: hidden;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px getColor(transblack);
+    position: relative;
+    transition: 0.8s;
+}
+
+.qz_third_pl::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: getColor(secondary);
+    z-index: 0;
+    transition: 0.8s;
+    border-top-right-radius: 5rem;
+}
+
+.qz_third_pl:hover{
+    color: getColor(primary);
+    text-shadow: 0px 0px 1px getColor(secondary), 0px 0px 3px getColor(primary);
+}
+.qz_third_pl:hover::before{
+    width: 100%;
+}
+
+.qz_third_pl h3{
+    width: 80%;
+    padding-left: 0.5rem;
+    z-index: 1;
+}
+
+.qz_third_pl h1{
+    width: 20%;
+    height: 100%;
+    font-size: 2rem;
+    border-top-right-radius: 2.5rem;
+    background: getColor(secondary);
+    color: getColor(primary);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.qz_third_pl h1:hover{    
+    background: getColor(primary);
+    color: getColor(secondary);
+}
+
+.qz_third_match:hover {
+    .qz_third_vs{
+        animation-name: beatUp;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+}
+
+// Animation Below
+
+@keyframes rotateRight{
+    0%{
+        transform: rotate(22.5deg);
+    }
+}
+
+@keyframes slowShow{
+    from{
+        opacity: 0;
+        height: 0vh;
+        width: 0vh;
+    }
+    to{
+        opacity: 1;
+        height: 200vh;
+        width: 100vw;
+    }
+}
+
+@keyframes beatUp{
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+

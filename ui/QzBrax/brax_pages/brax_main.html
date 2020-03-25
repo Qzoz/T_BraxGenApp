@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en"  style="min-height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Qz Brackets</title>
+    <link rel="stylesheet" id="qz_page_style" href="../assets/css/brax/brax_css_1.css">
+    <link rel="stylesheet" href="../assets/css/modal/qz_modal.css">
+    <link rel="stylesheet" id="qz_modal_style" href="../assets/css/brax/brax_modal_1.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
+</head>
+
+<body id="brax_back">
+    <div class="qz_brax_container w100 h100 disFlex alignCenter font-montserratSemiBold"
+        id="brax_holder" style="min-height: 100vh;"></div>
+
+    <div class="qz_float_cont centerBottom font-montserratSemiBold
+                    disFlex justifyCenter alignCenter" id="qz_floating_content">
+        <div class="h50 qz_float_content disFlex alignCenter">
+            <div class="qz_float_c1 posRel w50 h100">
+                <div class="qz_final_match h100 posRel">
+                    <div class="qz_final_tile_block">
+                        <div class="qz_final_pl_holder disFlex jEnd alignCenter">
+                            <div class="qz_final_pl disFlex alignCenter">
+                                <h3 class="qz_final_pl_name" id="final-p-1"
+                                    onclick="winnersInfinalClicked('final-p-1')"></h3>
+                                <h1 class="disFlex justifyCenter alignCenter"
+                                    onclick="infoClickedResolved('final-p-1')">&ii;</h1>
+                            </div>
+                        </div>
+                        <div class="qz_final_vs disFlex justifyCenter alignCenter">
+                            <h2><img src="../assets/imgs/versus.png" height="64px" width="64px" alt="Vs"></h2>
+                        </div>
+                        <div class="qz_final_pl_holder disFlex jStart alignCenter">
+                            <div class="qz_final_pl disFlex alignCenter">
+                                <h3 class="qz_final_pl_name" id="final-p-2"
+                                    onclick="winnersInfinalClicked('final-p-2')"></h3>
+                                <h1 class="disFlex justifyCenter alignCenter"
+                                    onclick="infoClickedResolved('final-p-2')">&ii;</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Final</p>
+                </div>
+            </div>
+            <div class="qz_float_c2 posRel w50 h100">
+                <div class="qz_third_match h100 posRel">
+                    <div class="qz_third_tile_block">
+                        <div class="qz_third_pl_holder disFlex jStart alignCenter">
+                            <div class="qz_third_pl disFlex alignCenter">
+                                <h1 class="disFlex justifyCenter alignCenter"
+                                    onclick="infoClickedResolved('playoff-p-1')">&ii;</h1>
+                                <h3 class="qz_third_pl_name" id="playoff-p-1"
+                                    onclick="winnersInfinalClicked('playoff-p-1')"></h3>
+                            </div>
+                        </div>
+                        <div class="qz_third_vs disFlex justifyCenter alignCenter">
+                            <h2><img src="../assets/imgs/versus.png" height="64px" width="64px" alt="Vs"></h2>
+                        </div>
+                        <div class="qz_third_pl_holder disFlex jEnd alignCenter">
+                            <div class="qz_third_pl disFlex alignCenter">
+                                <h1 class="disFlex justifyCenter alignCenter"
+                                    onclick="infoClickedResolved('playoff-p-2')">&ii;</h1>
+                                <h3 class="qz_third_pl_name" id="playoff-p-2"
+                                    onclick="winnersInfinalClicked('playoff-p-2')"></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Third</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="qz_fl_btn centerBottom font-montserratSemiBold
+                    disFlex justifyCenter alignCenter" onclick="toggleFloatingButton(this)"
+        data-target="qz_floating_content">
+        <p>&plus;</p>
+    </div>
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_playerInfoModal">
+        <div class="qz_modal_parent" style="width:40%;">
+            <div class="qz_modal_close" data-toggle="modal" data-target="qz_playerInfoModal">&times;</div>
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_fire_grad_back">
+                    <h1>Player Info</h1>
+                </div>
+                <div class="qz_modal_body qz_fire_light_back">
+                    <div class="qz_container">
+                        <div class="qz_info_row">
+                            <h5 class="qz_info_r_tag">ID</h5>
+                            <h3 class="qz_info_r_val" id="qz_info_id"></h3>
+                        </div>
+                        <div class="qz_info_row">
+                            <h5 class="qz_info_r_tag">Name</h5>
+                            <h3 class="qz_info_r_val" id="qz_info_fname"></h3>
+                        </div>
+                        <div class="qz_info_row">
+                            <h5 class="qz_info_r_tag">Surname</h5>
+                            <h3 class="qz_info_r_val" id="qz_info_sname"></h3>
+                        </div>
+                        <div class="qz_info_row">
+                            <h5 class="qz_info_r_tag">PhoneNo</h5>
+                            <h3 class="qz_info_r_val" id="qz_info_phno"></h3>
+                        </div>
+                        <div class="qz_info_row">
+                            <h5 class="qz_info_r_tag">Player Origin</h5>
+                            <h3 class="qz_info_r_val" id="qz_info_origin"></h3>
+                        </div>
+                        <div class="qz_info_row">
+                            <h5 class="qz_info_r_tag">Match ID</h5>
+                            <h3 class="qz_info_r_val" id="qz_info_match"></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_fire_grad_back disFlex
+                        jEnd">
+                    <div class="qz_btn qz_btn_close" data-toggle="modal" data-target="qz_playerInfoModal">Close</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_confirmModal">
+        <div class="qz_modal_parent" style="width:50%;">
+            <div class="qz_modal_close" data-toggle="modal" data-target="qz_confirmModal">&times;</div>
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_fire_grad_back">
+                    <h1>Player Proceed Confirmation</h1>
+                    <h6>This process is <strong>Irreversible</strong></h6>
+                </div>
+                <div class="qz_modal_body qz_fire_light_back">
+                    <div class="qz_container">
+                        <div class="qz_conf_row">
+                            <h5 class="qz_conf_r_tag">Name</h5>
+                            <h3 class="qz_conf_r_val" id="qz_conf_fname"></h3>
+                        </div>
+                        <div class="qz_conf_row">
+                            <h5 class="qz_conf_r_tag">Surname</h5>
+                            <h3 class="qz_conf_r_val" id="qz_conf_sname"></h3>
+                        </div>
+                        <div class="qz_conf_row">
+                            <h5 class="qz_conf_r_tag">Player Origin</h5>
+                            <h3 class="qz_conf_r_val" id="qz_conf_origin"></h3>
+                        </div>
+                        <div class="qz_conf_row">
+                            <h5 class="qz_conf_r_tag">Match ID</h5>
+                            <h3 class="qz_conf_r_val" id="qz_conf_match"></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_fire_grad_back disFlex jEnd">
+                    <div class="qz_force_form" >
+                        <p class="qz_force_form_msg">For Forced Confirm</p>
+                        <input type="text" class="qz_force_form_inp" 
+                            id="qz_forceProceedConfirm" placeholder="Type: 'sudo Confirm'">
+                    </div>
+                    <div class="qz_btn qz_btn_confirm" onclick="playerProceedConfirmed(true)" data-toggle="modal"
+                        data-target="qz_confirmModal">Confirm</div>
+                    <div class="qz_btn qz_btn_cancel" onclick="playerProceedConfirmed(false)" data-toggle="modal"
+                        data-target="qz_confirmModal">Cancel</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_matchInfoModal">
+        <div class="qz_modal_parent">
+            <div class="qz_modal_close" data-toggle="modal" data-target="qz_matchInfoModal">&times;</div>
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_fire_grad_back">
+                    <h1>Match Info</h1>
+                </div>
+                <div class="qz_modal_body qz_fire_light_back">
+                    <div class="qz_container">
+
+                        <div class="qz_match_info">
+                            <h5 class="qz_match_info_tag">Match No</h5>
+                            <h3 class="qz_match_info_val" id="qz_match_no"></h3>
+                        </div>
+                        <div class="qz_match_info">
+                            <h5 class="qz_match_info_tag">Match ID</h5>
+                            <h3 class="qz_match_info_val" id="qz_match_info"></h3>
+                        </div>
+                        <div class="qz_match_info">
+                            <h5 class="qz_match_info_tag">Match Status</h5>
+                            <h3 class="qz_match_info_val" id="qz_match_status"></h3>
+                        </div>
+                        <!-- <div class="qz_match_info">
+                            <h5 class="qz_match_info_tag">Match Next ID</h5>
+                            <h3 class="qz_match_info_val" id="qz_match_next"></h3>
+                        </div> -->
+                        <div class="qz_match_info_row">
+                            <div class="qz_col2">
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">ID</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_id1"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Name</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_fname1"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Surname</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_sname1"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Player Origin</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_origin1"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Match ID</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_match1"></h3>
+                                </div>
+                            </div>
+                            <div class="qz_col2">
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">ID</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_id2"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Name</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_fname2"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Surname</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_sname2"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Player Origin</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_origin2"></h3>
+                                </div>
+                                <div class="qz_match_row">
+                                    <h5 class="qz_match_r_tag">Match ID</h5>
+                                    <h3 class="qz_match_r_val" id="qz_match_match2"></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_fire_grad_back disFlex jEnd">
+                    <div class="qz_btn qz_btn_backtrack" onclick="revertMatchResult(this)" id="qz_backtrackBtn">Revert Back</div>
+                    <div class="qz_btn qz_btn_close" data-toggle="modal" data-target="qz_matchInfoModal">Close</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="qz_modal_container font-montserratSemiBold" id="qz_finalRankingModal">
+        <div class="qz_modal_parent">
+            <div class="qz_modal_close" data-toggle="modal" data-target="qz_finalRankingModal">&times;</div>
+            <div class="qz_modal_contents">
+                <div class="qz_modal_head qz_fire_grad_back">
+                    <h1>Final Positions</h1>
+                </div>
+                <div class="qz_modal_body qz_fire_light_back">
+                    <div class="qz_container">
+                        <div class="qz_rank_row">
+                            <h2 class="qz_rank_r_tag">1<sup>st</sup></h2>
+                            <h1 class="qz_rank_r_val" id="qz_rank_1"></h1>
+                        </div>
+                        <div class="qz_rank_row">
+                            <h3 class="qz_rank_r_tag">2<sup>nd</sup></h3>
+                            <h2 class="qz_rank_r_val" id="qz_rank_2"></h2>
+                        </div>
+                        <div class="qz_rank_row">
+                            <h4 class="qz_rank_r_tag">3<sup>rd</sup></h4>
+                            <h3 class="qz_rank_r_val" id="qz_rank_3"></h3>
+                        </div>
+                        <div class="qz_rank_row">
+                            <h5 class="qz_rank_r_tag">4<sup>th</sup></h5>
+                            <h4 class="qz_rank_r_val" id="qz_rank_4"></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="qz_modal_foot qz_fire_grad_back disFlex jEnd">
+                    <div class="qz_btn qz_btn_close" data-toggle="modal" 
+                        data-target="qz_finalRankingModal">Close</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../assets/js/modal/qz_modal.js"></script>
+    <script src="../assets/js/brax/brax_modal.js"></script>
+    <script src="../assets/js/brax/brax_mapping.js"></script>
+    <script src="../assets/js/brax/brax_filler.js"></script>
+    <script src="../assets/js/brax/brax_calculation.js"></script>
+    <script src="../assets/js/brax/brax_generator.js"></script>
+    <script src="../assets/js/brax/brax_actions.js"></script>
+    <script src="../assets/js/brax/brax_initializer.js"></script>
+</body>
+
+</html>

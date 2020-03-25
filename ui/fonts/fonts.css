@@ -1,0 +1,9 @@
+ 
+  @font-face {
+    font-family: MontserratAltSemiBold;
+    src: url(Montserrat_Alternates/MontserratAlternates-SemiBold.ttf);
+  }
+
+  .font-montserratSemiBold{
+    font-family: MontserratAltSemiBold !important;
+  }

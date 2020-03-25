@@ -1,0 +1,287 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  height: 100vh;
+}
+
+.qz_splash_body {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: transparent;
+}
+
+.qz_splash_container {
+  z-index: 999990;
+  width: 75%;
+  height: 75%;
+  background: transparent;
+  position: relative;
+}
+
+.qz_author {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: #ffffff;
+  z-index: 999992;
+}
+
+.qz_splash_content_container {
+  z-index: 999991;
+  height: 100%;
+  width: 0px;
+  background: #000000;
+  position: absolute;
+  left: 0;
+  -webkit-transition: 1.2s ease;
+  transition: 1.2s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.qz_splash_content {
+  z-index: 999992;
+  background: transparent;
+  -webkit-transition: 1.2s ease;
+  transition: 1.2s ease;
+}
+
+.qz_anim_slow_up {
+  -webkit-animation-name: slowUp;
+          animation-name: slowUp;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+
+.qz_anim_slow_down {
+  -webkit-animation-name: slowDown;
+          animation-name: slowDown;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+
+.qz_fontas {
+  stroke: #ffffff;
+  stroke-width: 7.5px;
+  fill: transparent;
+}
+
+.qz_fontas:nth-child(1) {
+  stroke-dasharray: 621px;
+  stroke-dashoffset: 621px;
+  -webkit-animation: fontView 2s ease-in forwards 0.3s;
+          animation: fontView 2s ease-in forwards 0.3s;
+}
+
+.qz_fontas:nth-child(2) {
+  stroke-dasharray: 609px;
+  stroke-dashoffset: 609px;
+  -webkit-animation: fontView 2s ease-in forwards 0.6s;
+          animation: fontView 2s ease-in forwards 0.6s;
+}
+
+.qz_fontas:nth-child(3) {
+  stroke-dasharray: 619px;
+  stroke-dashoffset: 619px;
+  -webkit-animation: fontView 2s ease-in forwards 0.9s;
+          animation: fontView 2s ease-in forwards 0.9s;
+}
+
+.qz_fontas:nth-child(4) {
+  stroke-dasharray: 558px;
+  stroke-dashoffset: 558px;
+  -webkit-animation: fontView 2s ease-in forwards 1.2s;
+          animation: fontView 2s ease-in forwards 1.2s;
+}
+
+.qz_fontas:nth-child(5) {
+  stroke-dasharray: 555px;
+  stroke-dashoffset: 555px;
+  -webkit-animation: fontView 2s ease-in forwards 1.5s;
+          animation: fontView 2s ease-in forwards 1.5s;
+}
+
+.qz_fontas:nth-child(6) {
+  stroke-dasharray: 519px;
+  stroke-dashoffset: 519px;
+  -webkit-animation: fontView 2s ease-in forwards 1.8s;
+          animation: fontView 2s ease-in forwards 1.8s;
+}
+
+.qz_fontas:nth-child(7) {
+  stroke-dasharray: 555px;
+  stroke-dashoffset: 555px;
+  -webkit-animation: fontView 2s ease-in forwards 2.1s;
+          animation: fontView 2s ease-in forwards 2.1s;
+}
+
+.qz_fontas:nth-child(8) {
+  stroke-dasharray: 481px;
+  stroke-dashoffset: 481px;
+  -webkit-animation: fontView 2s ease-in forwards 2.4s;
+          animation: fontView 2s ease-in forwards 2.4s;
+}
+
+.qz_fontas:nth-child(9) {
+  stroke-dasharray: 481px;
+  stroke-dashoffset: 481px;
+  -webkit-animation: fontView 2s ease-in forwards 2.7s;
+          animation: fontView 2s ease-in forwards 2.7s;
+}
+
+.qz_btn_proceed_parent {
+  height: 8rem;
+  padding: 2rem 0;
+}
+
+.qz_btn_proceed {
+  padding: 1rem 4rem;
+  width: 100%;
+  font-size: 1.5rem;
+  border: 1px solid #000000;
+  border-radius: 0.5rem;
+  background: none;
+  color: #ffffff;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  position: relative;
+  text-align: center;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.qz_btn_proceed::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 0px;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background: #ffffff;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  z-index: -1;
+}
+
+.qz_btn_proceed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0px;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  background: #ffffff;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  z-index: -1;
+}
+
+.qz_btn_proceed:hover {
+  color: #000000;
+}
+
+.qz_btn_proceed:hover::before {
+  width: 120%;
+}
+
+.qz_btn_proceed:hover::after {
+  width: 120%;
+}
+
+@-webkit-keyframes fontView {
+  80% {
+    fill: transparent;
+  }
+  99% {
+    stroke-dasharray: 150px;
+  }
+  100% {
+    stroke-dasharray: 0px;
+    fill: #ffffff;
+    stroke: #888888;
+  }
+}
+
+@keyframes fontView {
+  80% {
+    fill: transparent;
+  }
+  99% {
+    stroke-dasharray: 150px;
+  }
+  100% {
+    stroke-dasharray: 0px;
+    fill: #ffffff;
+    stroke: #888888;
+  }
+}
+
+@-webkit-keyframes slowUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slowUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slowDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slowDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=splash.css.map */
