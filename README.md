@@ -22,3 +22,11 @@ Info about [Directories]:
   1. ui: Contains All the graphical content
   2. db: Contains All the database actions
   
+
+### Sample Images:
+
+<img src="https://github.com/Qzoz/T_BraxGenApp/blob/master/t_brax/brax_gen_home.png" alt="Sample 1" width="600">
+<hr>
+<img src="https://github.com/Qzoz/T_BraxGenApp/blob/master/t_brax/brax_gen_brackets.png" alt="Sample 1" width="600">
+<hr>
+<img src="https://github.com/Qzoz/T_BraxGenApp/blob/master/t_brax/brax_tekken.png" alt="Sample 1" width="600">
