@@ -152,11 +152,8 @@
                     </div>
                 </div>
                 <div class="qz_modal_foot qz_fire_grad_back disFlex jEnd">
-                    <div class="qz_force_form" >
-                        <p class="qz_force_form_msg">For Forced Confirm</p>
-                        <input type="text" class="qz_force_form_inp" 
-                            id="qz_forceProceedConfirm" placeholder="Type: 'sudo Confirm'">
-                    </div>
+                    <div class="qz_btn qz_btn_confirm" onclick="playerProceedConfirmed(true, true)" data-toggle="modal"
+                        data-target="qz_confirmModal">Force Confirm</div>
                     <div class="qz_btn qz_btn_confirm" onclick="playerProceedConfirmed(true)" data-toggle="modal"
                         data-target="qz_confirmModal">Confirm</div>
                     <div class="qz_btn qz_btn_cancel" onclick="playerProceedConfirmed(false)" data-toggle="modal"

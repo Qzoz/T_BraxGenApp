@@ -77,7 +77,7 @@ function showAllTP(){
  */
 function exportSelectedTournamentAsHTML(){
     if (selectedTournamentID == undefined) {showInfoMessage("Select a Tournament To Export");return;}
-    var filePathToSave = openSaveFileDialog();
+    const filePathToSave = openSaveFileDialog();
     if (filePathToSave != undefined && filePathToSave != null) {
         let c_tour = tournamentList[tournamentIDListMapping[selectedTournamentID]];
         let p_list = playerList;
@@ -87,7 +87,7 @@ function exportSelectedTournamentAsHTML(){
                 showErrorMessage("Exporting as HTML", err);
             }
             else{
-                showNotifications("Exported Succesfully\n\nPath:\n\n"+filePathToSave);
+                showNotifications("Exported Succesfully");
             }
         })
     }

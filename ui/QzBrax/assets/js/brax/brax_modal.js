@@ -24,13 +24,11 @@ function showConfirmModal(playerObj, eid){
     toggleModal(confirmModalID);
 }
 
-function playerProceedConfirmed(res){
-    if (document.getElementById('qz_forceProceedConfirm').value == 'sudo Confirm'){
-        document.getElementById('qz_forceProceedConfirm').value = "";
+function playerProceedConfirmed(res, forceConf){
+    if (forceConf && showConfirmMessage('Are You Sure!')) {
         confClicked(res, elemID, true);
         return;
     }
-    document.getElementById('qz_forceProceedConfirm').value = "";
     confClicked(res, elemID);
 }
 

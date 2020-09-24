@@ -93,7 +93,7 @@ function revertTheMatchResult(matchID){
         matchObj.nextMatchID.substr(0, matchObj.nextMatchID.length-4) == 'playoff'){return;}
     var nextMatchObj = getMatchObject(matchObj.nextMatchID.substr(0, matchObj.nextMatchID.length-4));
     if(nextMatchObj.status == 'don'){return;}
-    if(!showConfirmMessage('Are You Sur! To revert Back')) {return;}
+    if(!showConfirmMessage('Are You Sure! To revert Back')) {return;}
 
     setTextOfChild1AtElemID(matchObj.nextMatchID, "");
     if (nextMatchObj.p1 != undefined && nextMatchObj.p1.pid == matchObj.winner.pid) {

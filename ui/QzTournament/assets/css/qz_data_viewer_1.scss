@@ -9,6 +9,17 @@ $colors:(
     w0:#ffffff,
 );
 
+$color:(
+    w0:#000000,
+    w1:#353535,
+    w2:#4b4b4b,
+    w3:#666666,
+    b3:#9e9e9e,
+    b2:#c2c2c2,
+    b1:#e4e4e4,
+    b0:#ffffff,
+);
+
 
 @function gC($k){
     @return map-get($colors, $k);
